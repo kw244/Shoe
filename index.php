@@ -84,7 +84,7 @@
         var shoePanel= [
                 '<div class="col-md-1 shoe-frame">',
                 '  <div class= "image-frame">',
-                '    <img src="'+image+'" alt="" class="img-responsive">',
+                '    <img src="resources/thumbnails/thumb-'+image+'" alt="" class="img-responsive">',
                 '  </div>',
                 '  <h6>'+name+'</h6>',
                 '</div>'
