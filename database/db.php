@@ -12,6 +12,6 @@
  * DB_PASS: the password of the above user
  */
 define("DB_HOST", "localhost");
-define("DB_NAME", "cafecham_ticket");
+define("DB_NAME", "cafecham_shoe");
 define("DB_USER", "cafecham_admin");
 define("DB_PASS", "Boryuan85");
