@@ -66,7 +66,21 @@
 <!-- End About -->
 
 <div id="chooser-panel">
+        <div class="col-md-2">
+            <h4>Select 2 shoes to compare</h4>
+            
+        </div>
+        <div class="row">
+            <div class= "image-frame" id="i-f-1">
+                <img src="resources/thumbnails/Shoe-1.png" alt="" class="img-responsive" id="chooser-1">
+            </div>
+            
 
+            <div class="image-frame"  id="i-f-2">
+                <img src="resources/thumbnails/Shoe-2.png" alt="" class="img-responsive" id="chooser-2">
+            </div>
+            <button class="btn btn-red">Compare shoes</button>
+        </div>
 </div>
 
 
@@ -82,7 +96,7 @@
     //returns the html for each shoe panel given its name and image path
     function getShoePanelHTML(name, image){
         var shoePanel= [
-                '<div class="col-md-1 shoe-frame">',
+                '<div class="col-md-1 shoe-frame" data-name="'+name+'" data-img="'+image+'"=>',
                 '  <div class= "image-frame">',
                 '    <img src="resources/thumbnails/thumb-'+image+'" alt="" class="img-responsive">',
                 '  </div>',
@@ -99,7 +113,7 @@
             dataType:"json",
             success: function(response){
                 console.log(response);
-                
+                var counter = 0; 
                 for(var i = 1; i <= response.length; i++){
                    $("#shoe-grid").append(getShoePanelHTML(response[i-1].name, response[i-1].image));                    
                 
@@ -107,7 +121,17 @@
                         $("#shoe-grid").append('<div class="clearfix visible-md-block"></div>');
                         console.log(response[i-1].name);
                     }
-                }      
+                }  
+                $(".shoe-frame").click(function(){
+                    counter++;
+                    console.log(counter);
+                    console.log($(this).data("name"));
+                    console.log($(this).data("img"));
+                    $("#chooser-" + counter).attr("src","resources/thumbnails/thumb-" + $(this).data("img"));
+                    $("#i-f-" + counter).data("name",$(this).data("name"));
+                    if(counter > 1) counter = 1;
+                });
+                
             }
         });
     });

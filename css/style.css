@@ -301,10 +301,10 @@ h5,
 }
 h6,
 .h6 {
-  font-size: 12px;
+  font-size: 11px;
 }
 p {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
 }
 .lead {
   margin-bottom: 20px;
@@ -4400,6 +4400,7 @@ a {
     position: relative;
     margin:auto;
 }
+/**
 #shoes .image-frame img{
     position: absolute;
     left: -1000%;
@@ -4410,16 +4411,42 @@ a {
     min-height: 100%;
     min-width: 100%;
 }
+**/
 
 #chooser-panel {
     height: 100px; 
     position: fixed; 
     bottom:0%;
     width:100%;
-    opacity:1;
-    border-color: #d35400;
-    border-width: 1px 3px 1px 3px;
-    border-style: solid;
+    z-index: 99;
+    background-color:#DCDCDC;
+    padding-left:20px;
+    line-height:200%;
+    
+}
+#chooser-panel .image-frame {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    position: relative;
+    margin: 0px;
+    display: inline-block;
+    
+}
+
+#chooser-panel button {
+    padding: 5px 10px;
+    margin: 5px 10px;
+    display: inline-block;
+}
+#chooser-panel .row {
+    margin-top: 0px; 
+}
+#chooser-panel .row > * {
+    vertical-align:middle; 
+}
+.image-frame > * {
+    vertical-align:middle; 
 }
 
 
