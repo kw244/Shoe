@@ -73,11 +73,13 @@
         <div class="row">
             <div class= "image-frame" id="i-f-1">
                 <img src="resources/thumbnails/Shoe-1.png" alt="" class="img-responsive" id="chooser-1">
+                <i class="fa fa-times"></i>
             </div>
             
 
             <div class="image-frame"  id="i-f-2">
                 <img src="resources/thumbnails/Shoe-2.png" alt="" class="img-responsive" id="chooser-2">
+                <i class="fa fa-times"></i>
             </div>
             <button class="btn btn-red">Compare shoes</button>
         </div>
@@ -105,7 +107,17 @@
             ].join("\n");
         return shoePanel; 
     }
+    $(document).ready(function () {
+        $("#chooser-panel .image-frame").on('mouseenter', function () {
+            $(this).find(".fa-times").show();
+        });
+        $("#chooser-panel .image-frame").on('mouseleave', function () {
+            $(this).find(".fa-times").hide();
+        });
+        
+    });
 
+    
     $(document).ready(function() {
         $.ajax({
             type:"GET",
@@ -113,7 +125,7 @@
             dataType:"json",
             success: function(response){
                 console.log(response);
-                var counter = 0; 
+                
                 for(var i = 1; i <= response.length; i++){
                    $("#shoe-grid").append(getShoePanelHTML(response[i-1].name, response[i-1].image));                    
                 
@@ -122,14 +134,23 @@
                         console.log(response[i-1].name);
                     }
                 }  
+                
                 $(".shoe-frame").click(function(){
-                    counter++;
-                    console.log(counter);
-                    console.log($(this).data("name"));
-                    console.log($(this).data("img"));
-                    $("#chooser-" + counter).attr("src","resources/thumbnails/thumb-" + $(this).data("img"));
-                    $("#i-f-" + counter).data("name",$(this).data("name"));
-                    if(counter > 1) counter = 1;
+                    var chooser1Image = $("#chooser-1").attr("src").slice(-10);
+                    if(chooser1Image==="Shoe-1.png"){ //we load image into i-f-1 if it is empty
+                        $("#chooser-1").attr("src","resources/thumbnails/thumb-" + $(this).data("img"));
+                        $("#i-f-1").data("name",$(this).data("name"));
+                    }
+                    else{ //we load image into i-f-2
+                        $("#chooser-2").attr("src","resources/thumbnails/thumb-" + $(this).data("img"));
+                        $("#i-f-2").data("name",$(this).data("name"));
+                    }
+                });
+                
+                $("#chooser-panel .image-frame").click(function(){
+                    var frameNum = $(this).attr("id").slice(-1); //get the frame number
+                    $(this).children("img").attr("src","resources/thumbnails/Shoe-"+frameNum+".png"); //reset to the placeholder img
+                    
                 });
                 
             }
