@@ -71,11 +71,31 @@
         return $shoeArray;
     }
     
-    
-    
-    
-    
-    
+    //return the shoes' information from the database as a Shoe array shoes' name in an array
+	function getShoesByNames($mysqli, $name_array){
+        //initialize the array to return the shoes
+        $shoeArray = array();
+        
+        foreach($name_array as $name){
+            $query = "SELECT * FROM shoes WHERE shoe_name=?";
+            $statement = $mysqli->prepare($query);
+            
+            //bind parameters for markers where (s=string, i=integer, d=double, b=blob)
+            $statement->bind_param('s',$name);
+            
+            //execute query
+            $statement->execute();
+            
+            //bind result variables
+            $statement->bind_result($shoe_id,$shoe_name,$shoe_brand,$shoe_price,$shoe_blurb,$shoe_traction,$shoe_cushion,$shoe_materials,$shoe_fit,$shoe_support,$shoe_image);
+            
+            while($statement->fetch()){  
+                $tempShoe = new Shoe($shoe_name, $shoe_brand, $shoe_price, $shoe_blurb, $shoe_traction, $shoe_cushion, $shoe_materials, $shoe_fit, $shoe_support, $shoe_image);
+                array_push($shoeArray, $tempShoe);
+            }
+        }     
+        return $shoeArray;
+    }
     
     
     

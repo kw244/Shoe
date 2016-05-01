@@ -4421,8 +4421,7 @@ a {
     z-index: 99;
     background-color:#DCDCDC;
     padding-left:20px;
-    line-height:200%;
-    
+
 }
 #chooser-panel .image-frame {
     width: 60px;
@@ -4457,6 +4456,38 @@ a {
     color:#C31605; 
     display:none;
 }
+
+#compare-panel{
+    margin-top: 20px;
+}
+
+.shoe-image {
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    position: relative;
+    margin:auto;
+}
+
+.squish-header {
+    margin-top:5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.squish-header  h1 ,
+.squish-header  h2 ,
+.squish-header  h3 ,
+.squish-header  h4 ,
+.squish-header  h5 ,
+.squish-header  h6 
+{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    vertical-align: middle;
+
+}
+
 
 
 

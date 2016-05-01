@@ -45,46 +45,20 @@
 <!-- End Header -->
 
 
-
-<!-- Start About -->
-<section id="shoes">
-  <div class="container">
-    
-    <div class="row">
-        
-        <div class="col-md-8 col-md-offset-2 preamble">
-            <h3>Shoe Selector</h3>
-        </div>   
-        <!-- grid of shoes gets populated here -->
-        <!-- TODO specify img size to speed up page display-->
-        <div class="col-md-12" id="shoe-grid">
-        </div>
-        
+<div id="compare-panel">
+    <div class="col-xs-12 squish-header">
+        <h3>Face Off</h3>
+    </div>
+    <div class="col-xs-6 squish-header">
+            <img src="resources/thumbnails/thumb-risinghigh.png" alt="" class=" shoe-image" id="shoe-image-1">
+            <h5><span id="shoe-1-name">AIR JORDAN RISING HIGH</span></h5>
     </div>
     
-  </div>
- 
-</section>
-<!-- End About -->
+    <div class="col-xs-6 squish-header">
+        <img src="resources/thumbnails/thumb-jcrossover3.png" alt="" class=" shoe-image" id="shoe-image-2">
+        <h5><span id="shoe-2-name">BRANDBLACK J CROSSOVER 3</span></h5>
+    </div>
 
-<div id="chooser-panel">
-        <div class="col-md-2">
-            <h4>Select 2 shoes to compare</h4>
-            
-        </div>
-        <div class="row">
-            <div class= "image-frame" id="i-f-1">
-                <img src="resources/thumbnails/Shoe-1.png" alt="" class="img-responsive" id="chooser-1">
-                <i class="fa fa-times"></i>
-            </div>
-            
-
-            <div class="image-frame"  id="i-f-2">
-                <img src="resources/thumbnails/Shoe-2.png" alt="" class="img-responsive" id="chooser-2">
-                <i class="fa fa-times"></i>
-            </div>
-            <button class="btn btn-red">Compare shoes</button>
-        </div>
 </div>
 
 
@@ -95,7 +69,38 @@
 <script src="js/jquery.easing.min.js"></script>
 <script src="js/jquery.ba-outside-events.min.js"></script>
 <script src="js/jquery.ui.min.js"></script>
-<script src="js/chooser.js"></script>
+
+<script type="text/javascript">
+    
+    //converts the data from database request to be D3 friendly
+    function convertObj(shoeObj){
+        var categories = ["traction", "cushion", "materials", "fit", "support"];
+        var shoe=[];
+        for(var key in shoeObj){
+            if(categories.indexOf(key)>=0){
+                shoe.push({name:key, value: shoeObj[key]});
+            }
+        }
+        return shoe;
+    }
+    
+    /**  Prepares shoe information for visual comparison **/
+    $(document).ready(function() {
+        $.ajax({
+            type:"GET",
+            data:{'name_1': $("#shoe-1-name").text(), 'name_2': $("#shoe-2-name").text()},
+            url:"database/get-shoes-compare.php",
+            dataType:"json",
+            success: function(response){
+                console.log(response);     
+                for(var i=0; i<response.length; i++){
+                    console.log(convertObj(response[i]));
+                }
+                    
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
