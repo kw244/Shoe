@@ -17,7 +17,7 @@
                     .attr("viewBox", "0 0 800 500");
                     
 					
-			//setup our embedded chart		
+			//setup our embedded chart. we use 2 separate svg elements for each shoe		
 			var chart2 = svg.append("g")
 						.attr("class","chart")
 						.attr("transform", "translate(" + (margin.left + width/2 + middlePadding) + "," + margin.top + ")");
@@ -42,6 +42,7 @@
                 .enter()
                     .append("g");
                     
+            //draw bars to indicate rating for each category
             bar2.append("rect")
                 .attr("class","bar2")
                 .attr("x", 0)
@@ -56,11 +57,29 @@
                 .attr("height", yScale.rangeBand())
                 .attr("width", function(d){ return xScale(d.value); });
   
+            //include labels for each category
             bar1.append("text")
               .attr("x", -margin.left/2)
               .attr("y", function(d){ return yScale(d.name) + yScale.rangeBand()/2; })
               .attr("dy", '0.35em')
               .text(function(d) { return d.name.toUpperCase(); });
+              
+            //include labels indicating scores for each category  
+            bar2.append("text")
+                .attr("class","bar-label-2")
+                .attr("x", function(d) { return xScale(d.value) - 3; })
+                .attr("y", function(d){ return yScale(d.name) + yScale.rangeBand()/2 ; })
+                .attr("dy", "0.35em")
+                .text(function(d) { return d.value; });  
+            
+            bar1.append("text")
+                .attr("class","bar-label-1")
+                .attr("x", function(d){ return width/2 - xScale(d.value) + 3;})
+                .attr("y", function(d){ return yScale(d.name) + yScale.rangeBand()/2 ; })
+                .attr("dy", "0.35em")
+                .text(function(d) { return d.value; });  
+            
+            
               
             
 		}

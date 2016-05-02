@@ -4462,8 +4462,8 @@ a {
 }
 
 .shoe-image {
-    width: 75px;
-    height: 75px;
+    width: 90px;
+    height: 90px;
     overflow: hidden;
     position: relative;
     margin:auto;
@@ -4506,6 +4506,18 @@ text {
     vertical-align: top;
     overflow: hidden;
 }
+.bar-label-1{
+  fill: white;
+  font: 12px 'Century Gothic';
+  text-anchor: start;
+}
+
+.bar-label-2{
+  fill: white;
+  font: 12px 'Century Gothic';
+  text-anchor: end;
+}
+
 
 
 
