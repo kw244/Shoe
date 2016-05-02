@@ -27,14 +27,12 @@
             url:"database/get-shoes.php",
             dataType:"json",
             success: function(response){
-                console.log(response);
                 
                 for(var i = 1; i <= response.length; i++){
                    $("#shoe-grid").append(getShoePanelHTML(response[i-1].name, response[i-1].image));                    
                 
                     if(i % 12 === 0){
                         $("#shoe-grid").append('<div class="clearfix visible-md-block"></div>');
-                        console.log(response[i-1].name);
                     }
                 }  
                 
@@ -59,3 +57,22 @@
             }
         });
     });
+    
+    
+    //button-click handler
+    //if 2 shoes have been selected, direct to shoe-compare page, else stay on page and show alert
+    $(document).ready(function(){
+        $("#compare-btn").click(function(){
+            var chooser1Image = $("#chooser-1").attr("src").slice(-10);
+            var chooser2Image = $("#chooser-2").attr("src").slice(-10);
+            if((chooser1Image==="Shoe-1.png")||(chooser2Image==="Shoe-2.png")){
+                window.alert("Please select 2 shoes to compare!"); 
+            }
+            else{
+                window.location = "shoe-compare.html?name-1=" + $("#i-f-1").data("name") +
+                                    "&name-2=" + $("#i-f-2").data("name"); 
+            }
+        });
+        
+    });
+    

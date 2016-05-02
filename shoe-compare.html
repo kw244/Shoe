@@ -50,13 +50,13 @@
         <h2>Face Off</h2>
     </div>
     <div class="col-xs-5 col-xs-offset-1 squish-header">
-            <img src="resources/thumbnails/thumb-risinghigh.png" alt="" class=" shoe-image" id="shoe-image-1">
-            <h5><span id="shoe-1-name">AIR JORDAN RISING HIGH</span></h5>
+            <img src="" alt="" class=" shoe-image" id="shoe-image-1">
+            <h5><span id="shoe-name-1"></span></h5>
     </div>
     
     <div class="col-xs-5 squish-header">
-        <img src="resources/thumbnails/thumb-jcrossover3.png" alt="" class=" shoe-image" id="shoe-image-2">
-        <h5><span id="shoe-2-name">BRANDBLACK J CROSSOVER 3</span></h5>
+        <img src="" alt="" class=" shoe-image" id="shoe-image-2">
+        <h5><span id="shoe-name-2"></span></h5>
     </div>
     
     <div class="col-xs-12" id="barchart">
@@ -88,47 +88,42 @@
         return shoe;
     }
     
+    //parses the query string from url
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+    
     /**  Prepares shoe information for visual comparison **/
-    $(document).ready(function() {
+    //$(document).ready(function() {
+        //we get the names of the shoes to compare from query string
+        var name_1 = getParameterByName('name-1');
+        var name_2 = getParameterByName('name-2');
+        
         $.ajax({
             type:"GET",
-            data:{'name_1': $("#shoe-1-name").text(), 'name_2': $("#shoe-2-name").text()},
+            data:{'name_1': name_1, 'name_2': name_2},
             url:"database/get-shoes-compare.php",
             dataType:"json",
             success: function(response){   
-                for(var i=0; i<response.length; i++){
-                    console.log(convertObj(response[i]));
-                }
-                    
+                //we update the images and text
+                $("#shoe-image-1").attr("src","resources/thumbnails/thumb-" + response[0].image);
+                $("#shoe-image-2").attr("src","resources/thumbnails/thumb-" + response[1].image);
+                $("#shoe-name-1").text(name_1);
+                $("#shoe-name-2").text(name_2);
+
+                //we draw the bar chart comparing the shoes
+                draw(convertObj(response[0]), convertObj(response[1]));
             }
         });
-    });
+    //});
 </script>
 
-<script type="text/javascript">
-		var risinghigh = [
-                            {name:'traction', value:2},
-                            {name:'cushion',value:4},
-                            {name:'materials',value:3},
-                            {name:'fit',value:4},
-                            {name:'support',value:5}						
-						];
-						
-		var jc3 = 		[
-                            {name:'traction', value:4},
-                            {name:'cushion',value:4},
-                            {name:'materials',value:4},
-                            {name:'fit',value:4},
-                            {name:'support',value:4}						
-						];
-        console.log(risinghigh);
-        console.log(jc3);
-        $(document).ready(function() {
-            draw(risinghigh, jc3);
-        });
-        
-		
-	</script>
 
 </body>
 </html>
