@@ -76,7 +76,6 @@
 <script src="js/barchart.js"></script>
 
 <script type="text/javascript">
-    
     //converts the data from database request to be D3 friendly
     function convertObj(shoeObj){
         var categories = ["traction", "cushion", "materials", "fit", "support"];
@@ -96,8 +95,7 @@
             data:{'name_1': $("#shoe-1-name").text(), 'name_2': $("#shoe-2-name").text()},
             url:"database/get-shoes-compare.php",
             dataType:"json",
-            success: function(response){
-                console.log(response);     
+            success: function(response){   
                 for(var i=0; i<response.length; i++){
                     console.log(convertObj(response[i]));
                 }
