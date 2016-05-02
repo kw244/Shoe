@@ -4488,6 +4488,26 @@ a {
 
 }
 
+.bar1 {
+  fill: steelblue;
+}
+.bar2 {
+  fill: brown;
+}
+
+text {
+  fill: black;
+  font: 18px 'Century Gothic';
+  text-anchor: middle;
+}
+
+#barchart{
+    padding-bottom: 100%; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+}
+
 
 
 

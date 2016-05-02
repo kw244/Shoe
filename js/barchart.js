@@ -1,48 +1,23 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset='utf-8'>
-	<title>D3 Tutorial</title>
-	
-	<style>
-    .bar1 {
-      fill: steelblue;
-    }
-    .bar2 {
-      fill: brown;
-    }
-
-    text {
-      fill: black;
-      font: 18px 'Century Gothic';
-      text-anchor: middle;
-    }
-
-    
-    </style>
-	
-	
-	
-	
-	<script>
 		function draw(shoe_1, shoe_2){
 			"use strict";
 			//setup dimensions for our chart
-			var margin = { 	left: 150,
+			var margin = { 	left: 100,
 							right:50,
 							top:50,
 							bottom:50
 						};
             var middlePadding = 5; //gap in between the back-to-back barcharts
-			var width = 800 - margin.left - margin.right - middlePadding,
-				height = 400 - margin.top - margin.bottom;
+			var width = 960 - margin.left - margin.right - middlePadding,
+				height = 500 - margin.top - margin.bottom;
 				
 			//setup our svg		
-			var svg = d3.select("body")
+			var svg = d3.select("#barchart")
 					.append("svg")
-					.attr("width", width + margin.left + margin.right + middlePadding)
-					.attr("height",height + margin.top + margin.bottom);	
+                    .attr("preserveAspectRatio", "xMinYMin meet")
+                    .attr("viewBox", "0 0 960 500");
+                    
+/* 					.attr("width", width + margin.left + margin.right + middlePadding)
+					.attr("height",height + margin.top + margin.bottom);	 */
 					
 			//setup our embedded chart		
 			var chart1 = svg.append("g")
@@ -91,41 +66,3 @@
               
             
 		}
-	</script>
-	
-</head>
-
-<body>
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src='http://d3js.org/d3.v3.min.js'></script>
-	<script type="text/javascript">
-		var risinghigh = [
-                            {name:'traction', value:2},
-                            {name:'cushion',value:4},
-                            {name:'materials',value:3},
-                            {name:'fit',value:4},
-                            {name:'support',value:5}						
-						];
-						
-		var jc3 = 		[
-                            {name:'traction', value:4},
-                            {name:'cushion',value:4},
-                            {name:'materials',value:4},
-                            {name:'fit',value:4},
-                            {name:'support',value:4}						
-						];
-        console.log(risinghigh);
-        console.log(jc3);
-        $(document).ready(function() {
-            draw(risinghigh, jc3);
-        });
-        
-		
-	</script>
-	
-	
-
-	
-</body>
-
-</html>

@@ -47,16 +47,19 @@
 
 <div id="compare-panel">
     <div class="col-xs-12 squish-header">
-        <h3>Face Off</h3>
+        <h2>Face Off</h2>
     </div>
-    <div class="col-xs-6 squish-header">
+    <div class="col-xs-5 col-xs-offset-1 squish-header">
             <img src="resources/thumbnails/thumb-risinghigh.png" alt="" class=" shoe-image" id="shoe-image-1">
             <h5><span id="shoe-1-name">AIR JORDAN RISING HIGH</span></h5>
     </div>
     
-    <div class="col-xs-6 squish-header">
+    <div class="col-xs-5 squish-header">
         <img src="resources/thumbnails/thumb-jcrossover3.png" alt="" class=" shoe-image" id="shoe-image-2">
         <h5><span id="shoe-2-name">BRANDBLACK J CROSSOVER 3</span></h5>
+    </div>
+    
+    <div class="col-xs-12" id="barchart">
     </div>
 
 </div>
@@ -69,6 +72,8 @@
 <script src="js/jquery.easing.min.js"></script>
 <script src="js/jquery.ba-outside-events.min.js"></script>
 <script src="js/jquery.ui.min.js"></script>
+<script src='http://d3js.org/d3.v3.min.js'></script>
+<script src="js/barchart.js"></script>
 
 <script type="text/javascript">
     
@@ -101,6 +106,31 @@
         });
     });
 </script>
+
+<script type="text/javascript">
+		var risinghigh = [
+                            {name:'traction', value:2},
+                            {name:'cushion',value:4},
+                            {name:'materials',value:3},
+                            {name:'fit',value:4},
+                            {name:'support',value:5}						
+						];
+						
+		var jc3 = 		[
+                            {name:'traction', value:4},
+                            {name:'cushion',value:4},
+                            {name:'materials',value:4},
+                            {name:'fit',value:4},
+                            {name:'support',value:4}						
+						];
+        console.log(risinghigh);
+        console.log(jc3);
+        $(document).ready(function() {
+            draw(risinghigh, jc3);
+        });
+        
+		
+	</script>
 
 </body>
 </html>
