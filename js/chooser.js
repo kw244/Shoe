@@ -27,7 +27,7 @@
             url:"database/get-shoes.php",
             dataType:"json",
             success: function(response){
-                
+                console.log(response);
                 for(var i = 1; i <= response.length; i++){
                    $("#shoe-grid").append(getShoePanelHTML(response[i-1].name, response[i-1].image));                    
                 

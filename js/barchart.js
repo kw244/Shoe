@@ -1,20 +1,20 @@
 		function draw(shoe_1, shoe_2){
 			"use strict";
 			//setup dimensions for our chart
-			var margin = { 	left: 100,
-							right:50,
+			var margin = { 	left: 200,
+							right:25,
 							top:25,
 							bottom:25
 						};
             var middlePadding = 5; //gap in between the back-to-back barcharts
-			var width = 800 - margin.left - margin.right - middlePadding,
-				height = 250 - margin.top - margin.bottom;
+			var width = 1200 - margin.left - margin.right - middlePadding,
+				height = 400 - margin.top - margin.bottom;
 				
 			//setup our svg		
 			var svg = d3.select("#barchart")
 					.append("svg")
                     .attr("preserveAspectRatio", "xMinYMin meet")
-                    .attr("viewBox", "0 0 800 500");
+                    .attr("viewBox", "0 0 1200 400");
                     
 					
 			//setup our embedded chart. we use 2 separate svg elements for each shoe		
@@ -67,14 +67,14 @@
             //include labels indicating scores for each category  
             bar2.append("text")
                 .attr("class","bar-label-2")
-                .attr("x", function(d) { return xScale(d.value) - 3; })
+                .attr("x", function(d) { return xScale(d.value) - 4; })
                 .attr("y", function(d){ return yScale(d.name) + yScale.rangeBand()/2 ; })
                 .attr("dy", "0.35em")
                 .text(function(d) { return d.value; });  
             
             bar1.append("text")
                 .attr("class","bar-label-1")
-                .attr("x", function(d){ return width/2 - xScale(d.value) + 3;})
+                .attr("x", function(d){ return width/2 - xScale(d.value) + 4;})
                 .attr("y", function(d){ return yScale(d.name) + yScale.rangeBand()/2 ; })
                 .attr("dy", "0.35em")
                 .text(function(d) { return d.value; });  

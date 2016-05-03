@@ -4497,7 +4497,7 @@ a {
 
 text {
   fill: black;
-  font: 18px 'Century Gothic';
+  font: 22px 'Century Gothic';
   text-anchor: middle;
 }
 
@@ -4508,17 +4508,24 @@ text {
 }
 .bar-label-1{
   fill: white;
-  font: 12px 'Century Gothic';
+  font: 16px 'Century Gothic';
   text-anchor: start;
 }
 
 .bar-label-2{
   fill: white;
-  font: 12px 'Century Gothic';
+  font: 16px 'Century Gothic';
   text-anchor: end;
 }
 
+#compare-table{
+    margin-top:50px;
+    font: 14px 'Century Gothic';
+}
 
+#compare-table ul{
+    padding-left:5px;
+}
 
 
 
