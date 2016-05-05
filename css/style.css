@@ -4527,6 +4527,10 @@ text {
     padding-left:5px;
 }
 
+.swiper-container {
+    width: 100px;
+    height: 100px;
+}    
 
 
 
