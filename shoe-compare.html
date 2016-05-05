@@ -12,7 +12,7 @@
   <!-- TODO remove unused css rules-->
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+  <link rel="stylesheet" href="css/swiper.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
   <style>
@@ -58,13 +58,15 @@
         <h2>Face Off</h2>
     </div>
     <div class="col-xs-5 col-xs-offset-2 squish-header">
-            <img src="" alt="" class=" shoe-image" id="shoe-image-1">
-            <h5><span id="shoe-name-1"></span></h5>
+        <h5><span id="shoe-name-1"></span></h5>
+        <div class="swiper-container" id="shoe-images-1"></div>
+        
     </div>
     
     <div class="col-xs-5 squish-header">
-        <img src="" alt="" class=" shoe-image" id="shoe-image-2">
         <h5><span id="shoe-name-2"></span></h5>
+        <div class="swiper-container" id="shoe-images-2"></div>
+        
     </div>
     
     <div class="col-xs-12" id="barchart">
@@ -72,8 +74,8 @@
     <!-- TODO LIST -->
     <!-- Priority: Low | link tech to separate description page -->
     <!-- Priority: High | Include scrollable list of reviews Good/Bad -scrape from Amazon? -->
-    <!-- Priority: High | Include additional videos/pictures of shoe -->
-    <!-- Priority: Medium | Include discussion section for users to talk about shoes -->
+    <!-- Priority: Med | Include additional videos of shoe -->
+    <!-- Priority: Med | Include discussion section for users to talk about shoes -->
     
     <div class= "col-xs-12" id="compare-table">
         <table class="table">
@@ -92,11 +94,7 @@
                 <td class="col-xs-5"></td>
                 <td class="col-xs-5"></td>
             </tr>
-            <tr id="shoe-extra-images">
-                <td class="col-xs-2">Gallery</td>
-                <td class="col-xs-5"><div class="swiper-container" id="extra-images-1"></div></td>
-                <td class="col-xs-5"><div class="swiper-container" id="extra-images-2"></div></td>
-            </tr>
+            
             
         </table>
     </div>
@@ -107,7 +105,7 @@
 <script src="js/jquery-1.12.3.min.js"></script>
 <script src='http://d3js.org/d3.v3.min.js'></script>
 <script src="js/barchart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+<script src="js/swiper.jquery.min.js"></script>
 
 <script type="text/javascript">
     //converts the data from database request to be D3 friendly
@@ -145,9 +143,7 @@
         dataType:"json",
         success: function(response){   
         
-            //we update the images and text
-            $("#shoe-image-1").attr("src","resources/thumbnails/thumb-" + response[0].image);
-            $("#shoe-image-2").attr("src","resources/thumbnails/thumb-" + response[1].image);
+            //we update the name of the shoes       
             $("#shoe-name-1").text(name_1);
             $("#shoe-name-2").text(name_2);
 
@@ -178,26 +174,27 @@
             var img_1_root = response[0].image.slice(0,-4);
             var img_2_root = response[1].image.slice(0,-4);
             
-            //setup image gallery
-            
-            
+            //setup image gallery: generate the html framework for Swiper plugin
             var temp_img_html = '<div class="swiper-wrapper">';
+            temp_img_html += '<div class="swiper-slide"><img class="shoe-image" src="resources/thumbnails/thumb-' + response[0].image + '"></div>';
             for(var i=2; i<= extra_i; i++){
-                temp_img_html += '<div class="swiper-slide"><img class="shoe-image" src="resources/extra/' + img_1_root + '-' + i + '.jpg"></div>';
+                temp_img_html += '<div class="swiper-slide"><img class="shoe-image" src="resources/extra/' + img_1_root + '-' + i + '.png"></div>';
             }
-            temp_img_html += '</div>';
+            temp_img_html += '</div><div class="swiper-pagination"></div>';
             
             console.log(temp_img_html);
-            $("#extra-images-1").html(temp_img_html);
+            $("#shoe-images-1").html(temp_img_html);
                
-            temp_img_html = '<div class="swiper-wrapper">';  
+            //rinse and repeat for second shoe's image gallery
+            temp_img_html = '<div class="swiper-wrapper">'; 
+            temp_img_html += '<div class="swiper-slide"><img class="shoe-image" src="resources/thumbnails/thumb-' + response[1].image + '"></div>';
             for(var j=2; j<= extra_j; j++){
-                temp_img_html += '<div class="swiper-slide"><img class="shoe-image" src="resources/extra/' + img_2_root + '-' + j + '.jpg"></div>';
+                temp_img_html += '<div class="swiper-slide"><img class="shoe-image" src="resources/extra/' + img_2_root + '-' + j + '.png"></div>';
             }
-            temp_img_html += '</div>';
+            temp_img_html += '</div><div class="swiper-pagination"></div>';
             
             console.log(temp_img_html);
-            $("#extra-images-2").html(temp_img_html);
+            $("#shoe-images-2").html(temp_img_html);
        
             //we draw the bar chart comparing the shoes
             draw(convertObj(response[0]), convertObj(response[1]));       
@@ -207,7 +204,9 @@
                 var mySwiper = new Swiper ('.swiper-container', {
                   // Optional parameters
                   direction: 'horizontal',
-                  loop: true
+                  loop: true,
+                  // If we need pagination
+                  pagination: '.swiper-pagination'
                 });        
             });
         }
