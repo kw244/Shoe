@@ -37,9 +37,10 @@
         public $fit;
         public $support;
         public $image;
+        public $extra;
         public $tech;
         
-        public function __construct($shoe_name, $shoe_brand, $shoe_price, $shoe_blurb, $shoe_traction, $shoe_cushion, $shoe_materials, $shoe_fit, $shoe_support, $shoe_image, $shoe_tech) {
+        public function __construct($shoe_name, $shoe_brand, $shoe_price, $shoe_blurb, $shoe_traction, $shoe_cushion, $shoe_materials, $shoe_fit, $shoe_support, $shoe_image, $shoe_image_extra, $shoe_tech) {
               $this->name = $shoe_name;
               $this->brand = $shoe_brand;
               $this->price = $shoe_price;
@@ -50,6 +51,7 @@
               $this->fit = $shoe_fit;
               $this->support = $shoe_support;
               $this->image = $shoe_image;
+              $this->extra = $shoe_image_extra;
               $this->tech = $shoe_tech;
         }
     }
@@ -67,7 +69,7 @@
         
         while($row = $results->fetch_array()){
             
-            $tempShoe = new Shoe($row["shoe_name"], $row["shoe_brand"], $row["shoe_price"], $row["shoe_blurb"], $row["shoe_traction"], $row["shoe_cushion"], $row["shoe_materials"], $row["shoe_fit"], $row["shoe_support"], $row["shoe_image"], $row["shoe_tech"]);
+            $tempShoe = new Shoe($row["shoe_name"], $row["shoe_brand"], $row["shoe_price"], $row["shoe_blurb"], $row["shoe_traction"], $row["shoe_cushion"], $row["shoe_materials"], $row["shoe_fit"], $row["shoe_support"], $row["shoe_image"], $row["shoe_image_extra"], $row["shoe_tech"]);
             array_push($shoeArray, $tempShoe);
         }
         return $shoeArray;
@@ -89,10 +91,10 @@
             $statement->execute();
             
             //bind result variables
-            $statement->bind_result($shoe_id,$shoe_name,$shoe_brand,$shoe_price,$shoe_blurb,$shoe_traction,$shoe_cushion,$shoe_materials,$shoe_fit,$shoe_support,$shoe_image,$shoe_tech);
+            $statement->bind_result($shoe_id,$shoe_name,$shoe_brand,$shoe_price,$shoe_blurb,$shoe_traction,$shoe_cushion,$shoe_materials,$shoe_fit,$shoe_support,$shoe_image,$shoe_image_extra,$shoe_tech);
             
             while($statement->fetch()){  
-                $tempShoe = new Shoe($shoe_name, $shoe_brand, $shoe_price, $shoe_blurb, $shoe_traction, $shoe_cushion, $shoe_materials, $shoe_fit, $shoe_support, $shoe_image,$shoe_tech);
+                $tempShoe = new Shoe($shoe_name, $shoe_brand, $shoe_price, $shoe_blurb, $shoe_traction, $shoe_cushion, $shoe_materials, $shoe_fit, $shoe_support, $shoe_image, $shoe_image_extra, $shoe_tech);
                 array_push($shoeArray, $tempShoe);
             }
         }     
