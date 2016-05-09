@@ -91,6 +91,10 @@
             //we draw the bar chart comparing the shoes
             draw(convertObj(response[0]), convertObj(response[1]));       
             
+            function logToConsole(mySwiper,myEvent){
+               console.log("Clicked: " + mySwiper.activeIndex);
+            }
+            
             $(document).ready(function () {
                 //initialize swiper when document ready  
                 var mySwiper = new Swiper ('.swiper-container', {
@@ -98,8 +102,11 @@
                   direction: 'horizontal',
                   loop: true,
                   // If we need pagination
-                  pagination: '.swiper-pagination'
-                });        
+                  pagination: '.swiper-pagination',
+                  //we initialize the click event
+                  onDoubleTap: logToConsole
+                }); 
+                      
             });
         }
     });
