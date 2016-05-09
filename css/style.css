@@ -4462,8 +4462,8 @@ a {
 }
 
 .shoe-image {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
     overflow: hidden;
     position: relative;
     margin:auto;
@@ -4528,8 +4528,8 @@ text {
 }
 
 .swiper-container {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
 }    
 
 
