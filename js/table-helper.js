@@ -67,33 +67,34 @@
             var img_2_root = response[1].image.slice(0,-4);
             
             //setup image gallery: generate the html framework for Swiper plugin
-            var temp_img_html = '<div class="swiper-wrapper">';
-            temp_img_html += '<div class="swiper-slide"><img class="shoe-image" src="resources/thumbnails/thumb-' + response[0].image + '"></div>';
+            var temp_img_html_1 = '<div class="swiper-wrapper">';
+            temp_img_html_1 += '<div class="swiper-slide"><img class="shoe-image" src="resources/thumbnails/thumb-' + response[0].image + '"></div>';
             for(var i=2; i<= extra_i; i++){
-                temp_img_html += '<div class="swiper-slide"><img class="shoe-image" src="resources/extra/' + img_1_root + '-' + i + '.png"></div>';
+                temp_img_html_1 += '<div class="swiper-slide"><img class="shoe-image" src="resources/extra/' + img_1_root + '-' + i + '.png"></div>';
             }
-            temp_img_html += '</div><div class="swiper-pagination"></div>';
+            temp_img_html_1 += '</div><div class="swiper-pagination"></div>';
+
+            $("#shoe-images-1").html(temp_img_html_1);
+            $("#dialog-1-content").html(temp_img_html_1);
             
-            console.log(temp_img_html);
-            $("#shoe-images-1").html(temp_img_html);
-               
             //rinse and repeat for second shoe's image gallery
-            temp_img_html = '<div class="swiper-wrapper">'; 
-            temp_img_html += '<div class="swiper-slide"><img class="shoe-image" src="resources/thumbnails/thumb-' + response[1].image + '"></div>';
+            var temp_img_html_2 = '<div class="swiper-wrapper">'; 
+            temp_img_html_2 += '<div class="swiper-slide"><img class="shoe-image" src="resources/thumbnails/thumb-' + response[1].image + '"></div>';
             for(var j=2; j<= extra_j; j++){
-                temp_img_html += '<div class="swiper-slide"><img class="shoe-image" src="resources/extra/' + img_2_root + '-' + j + '.png"></div>';
+                temp_img_html_2 += '<div class="swiper-slide"><img class="shoe-image" src="resources/extra/' + img_2_root + '-' + j + '.png"></div>';
             }
-            temp_img_html += '</div><div class="swiper-pagination"></div>';
-            
-            console.log(temp_img_html);
-            $("#shoe-images-2").html(temp_img_html);
-       
+            temp_img_html_2 += '</div><div class="swiper-pagination"></div>';
+
+            $("#shoe-images-2").html(temp_img_html_2);
+            $("#dialog-2-content").html(temp_img_html_2);
+        
             //we draw the bar chart comparing the shoes
             draw(convertObj(response[0]), convertObj(response[1]));       
             
             function logToConsole(mySwiper,myEvent){
                console.log("Clicked: " + mySwiper.activeIndex);
             }
+            
             
             $(document).ready(function () {
                 //initialize swiper when document ready  
@@ -106,6 +107,31 @@
                   //we initialize the click event
                   onDoubleTap: logToConsole
                 }); 
+                
+                $("#dialog-1").dialog({
+                    autoOpen: false,
+                    width: 240,
+                    title: name_1
+                });
+                $("#dialog-2").dialog({
+                    autoOpen: false,
+                    width: 240,
+                    title: name_2
+                });
+                
+                //we check if either swiper container is clicked
+                $("#shoe-images-1").click(function(){
+                    var msg = "Screen 1 was clicked";
+                    $("#dialog-1").dialog("open");
+                    
+                });
+                $("#shoe-images-2").click(function(){
+                    var msg = "Screen 2 was clicked";
+                    $("#dialog-2").dialog("open");
+                    
+                });
+                
+                
                       
             });
         }

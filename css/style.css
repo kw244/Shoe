@@ -4468,6 +4468,15 @@ a {
     position: relative;
     margin:auto;
 }
+#dialog-1 .shoe-image,
+#dialog-2 .shoe-image
+ {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    margin:auto;
+}
 
 .squish-header {
     margin-top:5px;
@@ -4531,6 +4540,12 @@ text {
     width: 110px;
     height: 110px;
 }    
+#dialog-1 .swiper-container,
+#dialog-2 .swiper-container
+{
+    width: 220px;
+    height: 220px;
+}
 
 
 
