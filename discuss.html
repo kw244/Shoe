@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Shoe</title>
+  <link rel="icon" href="resources/thumbnails/logo.png">
+  
+  <!-- Stylesheets -->
+  <!-- TODO remove unused css rules-->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+<!-- Start Header -->
+<header id="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="logo">
+          <a href="#"><img src="resources/thumbnails/logo.png" alt="logo" class="img-responsive"></a>
+          <span class="company-name"><p>Shoe</p></span>
+        </div>
+        <div class="navigation">
+          <nav>
+            <ul class="custom-list list-inline">
+              <li><a href="#">Home</a></li>
+              <li><a href="#events">Blog</a></li>
+              <li><a href="#faq">Contact Us</a></li>
+              <li><a href="#hero" class="btn btn-red">Sign Up</a></li>
+            </ul>
+          </nav>
+          <i class="fa fa-list toggleMenu"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- End Header -->
+
+
+<div class="col-md-8 col-md-offset-2 col-xs-12">
+    
+    <div class="preamble">
+        <h2 id="discuss-title"></h2>
+        <div class= "image-frame-large">
+            <img src="" alt="" class="img-responsive" id="discuss-image">
+        </div>
+    
+    
+    </div> 
+ 
+    <div id="disqus_thread"></div>
+        <script>
+        /**
+        * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        
+        var disqus_config = function () {
+        this.page.url = www.blocksacademy.com/shoe/discuss.html; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = shoe_name; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//kw244.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            
+    </div>
+
+
+<!-- Scripts -->
+<script src="js/jquery-1.12.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script>
+
+<script>
+    //parses the query string from url
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+    
+    /**  Get shoe name to load Disqus forum **/
+    var shoe_name = getParameterByName('shoe-name');
+    $("#discuss-title").text(shoe_name);
+    
+    $.ajax({
+        type:"GET",
+        data:{'name_1': shoe_name},
+        url:"database/get-shoes-discuss.php",
+        dataType:"json",
+        success: function(response){ 
+            $("#discuss-image").attr("src","resources/thumbnails/thumb-" + response[0].image);
+        }
+    });
+    
+    
+</script>
+
+
+</body>
+</html>

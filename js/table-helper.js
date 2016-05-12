@@ -60,6 +60,7 @@
             $("#shoe-tech td:nth-child(3)").html(tech_2_list);
             
             
+            
             //figure out number of extra images for gallery and root filename
             var extra_i = +response[0].extra;
             var extra_j = +response[1].extra;
@@ -90,6 +91,10 @@
         
             //we draw the bar chart comparing the shoes
             draw(convertObj(response[0]), convertObj(response[1]));       
+            
+            //generate links to the respective Disqus forums 
+            $("#shoe-discuss td:nth-child(2)").html('<a href="discuss.html?shoe-name=' + name_1 + '">Discuss the ' + name_1 + ' here</a>');
+            $("#shoe-discuss td:nth-child(3)").html('<a href="discuss.html?shoe-name=' + name_2 + '">Discuss the ' + name_2 + ' here</a>');
             
             
             $(document).ready(function () {

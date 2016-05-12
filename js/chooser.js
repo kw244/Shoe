@@ -1,7 +1,7 @@
     //returns the html for each shoe panel given its name and image path
     function getShoePanelHTML(name, image){
         var shoePanel= [
-                '<div class="col-md-1 shoe-frame" data-name="'+name+'" data-img="'+image+'"=>',
+                '<div class="col-md-1 shoe-frame" data-name="'+name+'" data-img="'+image+'">',
                 '  <div class= "image-frame">',
                 '    <img src="resources/thumbnails/thumb-'+image+'" alt="" class="img-responsive">',
                 '  </div>',

@@ -4392,14 +4392,16 @@ a {
     text-align: center;
     padding-bottom: 0px;
 }
-
 #shoes .image-frame {
     width: 60px;
-    height: 50px;
+    height: 60px;
     overflow: hidden;
     position: relative;
     margin:auto;
 }
+
+
+
 /**
 #shoes .image-frame img{
     position: absolute;
@@ -4546,6 +4548,17 @@ text {
     width: 220px;
     height: 220px;
 }
+.image-frame-large {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+    margin: 0px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
 
 
 
