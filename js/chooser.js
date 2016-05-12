@@ -20,6 +20,15 @@
         
     });
 
+    var emptyPanel = [
+                '<div class="col-md-1 empty-frame" data-name="" data-img="">',
+                '  <div class= "image-frame">',
+                '    <img src="" alt="" class="img-responsive">',
+                '  </div>',
+                '  <h6></h6>',
+                '</div>'
+            ].join("\n");
+            
     
     $(document).ready(function() {
         $.ajax({
@@ -27,7 +36,7 @@
             url:"database/get-shoes.php",
             dataType:"json",
             success: function(response){
-                console.log(response);
+                //dynamically create grid-style shoes list from database
                 for(var i = 1; i <= response.length; i++){
                    $("#shoe-grid").append(getShoePanelHTML(response[i-1].name, response[i-1].image));                    
                 
@@ -35,6 +44,8 @@
                         $("#shoe-grid").append('<div class="clearfix visible-md-block"></div>');
                     }
                 }  
+                //include empty grid as spacer for the bottom chooser panel
+                $("#shoe-grid").append(emptyPanel);
                 
                 $(".shoe-frame").click(function(){
                     var chooser1Image = $("#chooser-1").attr("src").slice(-10);

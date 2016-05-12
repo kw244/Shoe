@@ -4400,6 +4400,15 @@ a {
     margin:auto;
 }
 
+#shoes .empty-frame {
+    width: 60px;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    margin:auto;
+}
+
+
 
 
 /**
