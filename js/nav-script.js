@@ -11,7 +11,7 @@ $(document).ready(function () {
 	/* -------------------------------------------------------------------------
     SELECT BOX 
   ------------------------------------------------------------------------- */
-  $.fn.SelectBox = function() {
+/*   $.fn.SelectBox = function() {
 
     var self = $(this),
       select = self.find('select');
@@ -37,7 +37,7 @@ $(document).ready(function () {
 
     // CLICK
     clone.find('li').click(function() {
-
+      console.log($(this).text());
       value_holder.val($(this).text());
       select.find('option[value="' + $(this).attr('data-value') + '"]').attr('selected', 'selected');
 
@@ -45,7 +45,6 @@ $(document).ready(function () {
       if (self.hasClass('links')) {
         window.location.href = select.val();
       }
-
     });
 
     // HIDE LIST
@@ -61,13 +60,23 @@ $(document).ready(function () {
     }
 
   };
-
+ */
 
   // NAVBAR TOGGLE
   $( '.toggleMenu' ).click(function(){
     $('.navigation nav').slideToggle(300);
   });
+  
+  $(document).on('click', function(event) {
+      if (!$(event.target).closest('.navigation').length && $(window).width() <= 768) {
+        // Hide the menus.
+        $('.navigation nav').slideUp(300);
+      }
+  });
+  
 
+  
+  
   $(window).resize(function(){
     if ($(window).width() > 768) {
       $('.navigation nav').removeAttr( 'style' );

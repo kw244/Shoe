@@ -13,8 +13,7 @@
             type:"GET",
             url:"database/get-shoes.php",
             dataType:"json",
-            success: function(response){
-                console.log(response);        
+            success: function(response){   
                 //dynamically create discussion listing with shoes from database
                 for(var i = 1; i <= response.length; i++){
                    $("#discussion-grid").append(getDiscussPanelHTML(response[i-1].name));                    
