@@ -4490,7 +4490,6 @@ a {
 }
 
 .squish-header {
-    margin-top:5px;
     margin-bottom: 5px;
     text-align: center;
 }
@@ -4502,7 +4501,6 @@ a {
 .squish-header  h5 ,
 .squish-header  h6 
 {
-    margin-top: 5px;
     margin-bottom: 5px;
     vertical-align: middle;
 
