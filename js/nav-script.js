@@ -67,6 +67,11 @@ $(document).ready(function () {
     $('.navigation nav').slideToggle(300);
   });
   
+  //listens to The above handler listens for clicks on the document and checks to see 
+  //if the event target is .navigation or has .navigation as a parent. 
+  //if it doesn't, the click originated from outside of .navigation, and thus
+  //we hide the menus if they're visible.
+  //secondary check for window width (so we know if we're on mobile) and if so, hide menu
   $(document).on('click', function(event) {
       if (!$(event.target).closest('.navigation').length && $(window).width() <= 768) {
         // Hide the menus.
